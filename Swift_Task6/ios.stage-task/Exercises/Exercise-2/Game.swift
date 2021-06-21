@@ -21,15 +21,14 @@ extension Game {
         var minimumTrump = Card(suit: .clubs, value: .six)
         var firstPlayer = players.randomElement()
         
-        for player in players {
-            if let hand = player.hand {
-                for card in hand {
+        for player in players where player.hand != nil {
+                for card in player.hand! {
                     if card.isTrump && minimumTrump.checkValue(card: card) {
                         minimumTrump = card
                         firstPlayer = player
                     }
                 }
-            }
+            
         }
         return firstPlayer
     }
